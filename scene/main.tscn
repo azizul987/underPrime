@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://y5wagf14124e"]
 
-[ext_resource type="Texture2D" uid="uid://df3drn8xsodcn" path="res://laut dan langit].png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://df3drn8xsodcn" path="res://sprite/laut dan langit].png" id="1_itxqv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
-texture = ExtResource("1_ig7tw")
+texture = ExtResource("1_itxqv")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -22,7 +22,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_0xm2m")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ig7tw"]
-texture = ExtResource("1_ig7tw")
+texture = ExtResource("1_itxqv")
 texture_region_size = Vector2i(32, 32)
 5:0/0 = 0
 6:0/0 = 0
