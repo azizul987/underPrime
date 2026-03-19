@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://df3drn8xsodcn" path="res://sprite/laut dan langit].png" id="1_itxqv"]
 [ext_resource type="Script" uid="uid://dryv7pv71dd7d" path="res://skrip/camera_2d.gd" id="1_wp4xf"]
-[ext_resource type="Shader" uid="uid://c0khr8imndw0v" path="res://scene/laut.gdshader" id="2_brvut"]
+[ext_resource type="Shader" uid="uid://c0khr8imndw0v" path="res://shader/laut.gdshader" id="2_brvut"]
 [ext_resource type="PackedScene" uid="uid://8dvq3764lcjx" path="res://scene/kapal_selam.tscn" id="2_v0l8b"]
+[ext_resource type="Texture2D" uid="uid://dyvgqfy0fxvsj" path="res://sprite/putih.png" id="5_0ha60"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_itxqv")
@@ -49,10 +50,21 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_ig7tw")
 
+[sub_resource type="Gradient" id="Gradient_0ha60"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4j5ol"]
+gradient = SubResource("Gradient_0ha60")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.49130434, 0.5)
+fill_to = Vector2(0.7826087, 0.84347826)
+
 [node name="main" type="Node2D" unique_id=1919196309]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=871170513]
-max_distance = 8775.0
+energy = 0.85
+blend_mode = 1
 
 [node name="layer" type="Node2D" parent="." unique_id=1657588640]
 
@@ -69,9 +81,21 @@ tile_map_data = PackedByteArray("AAAAAAwAAQACAAAAAAAAAA0AAQACAAAAAAAAAA4AAQACAAA
 tile_set = SubResource("TileSet_0xm2m")
 
 [node name="CharacterBody2D" parent="." unique_id=183623793 instance=ExtResource("2_v0l8b")]
-position = Vector2(584, 375)
+position = Vector2(624, 1300)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1232922700]
 script = ExtResource("1_wp4xf")
 
+[node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D" unique_id=32788471]
+position = Vector2(-1.0000305, -4.000005)
+scale = Vector2(3.6875, 2.6875007)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_4j5ol")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=374577257]
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1769237988]
+position = Vector2(574.49994, 444.99997)
+scale = Vector2(35.906246, 27.8125)
+energy = 1.05
+texture = ExtResource("5_0ha60")
