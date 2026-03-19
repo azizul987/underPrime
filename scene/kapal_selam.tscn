@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://8dvq3764lcjx"]
+
+[ext_resource type="Script" uid="uid://go6qdiyfhtan" path="res://skrip/Gerakan_KapalSelam.gd" id="1_snucy"]
+[ext_resource type="Texture2D" uid="uid://diunuodlrfbnn" path="res://sprite/Kapal_selam.png" id="2_mulr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vee3"]
+size = Vector2(1.0000001, 2.1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=183623793 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_snucy")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640968093]
+position = Vector2(1.1920929e-07, -3.5000012)
+scale = Vector2(43.999996, 9.999999)
+shape = SubResource("RectangleShape2D_4vee3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1949191070]
+texture = ExtResource("2_mulr8")
