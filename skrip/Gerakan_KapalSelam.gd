@@ -10,6 +10,10 @@ extends CharacterBody2D
 
 @export var sprite: Sprite2D
 
+# false = sprite asli menghadap kanan
+# true  = sprite asli menghadap kiri
+@export var sprite_faces_left: bool = true
+
 const SURFACE_PRESSURE := 101325.0
 const SEA_WATER_DENSITY := 1025.0
 const WATER_GRAVITY := 9.81
@@ -75,14 +79,27 @@ func _prevent_leaving_surface() -> void:
 
 
 func _update_sprite_direction(input_dir: Vector2) -> void:
-	if input_dir.x != 0.0:
-		sprite.flip_h = input_dir.x < 0.0
+	if input_dir.x == 0.0:
+		return
+
+	var moving_left := input_dir.x < 0.0
+
+	if sprite_faces_left:
+		# Sprite asli menghadap kiri
+		# Ke kiri  = tidak di-flip
+		# Ke kanan = di-flip
+		sprite.flip_h = not moving_left
+	else:
+		# Sprite asli menghadap kanan
+		# Ke kanan = tidak di-flip
+		# Ke kiri  = di-flip
+		sprite.flip_h = moving_left
 
 
 func _update_sprite_rotation(delta: float) -> void:
 	var target_rotation := _get_target_rotation()
 
-	if sprite.flip_h:
+	if _is_sprite_visually_facing_left():
 		target_rotation = -target_rotation
 
 	sprite.rotation_degrees = lerp(
@@ -98,6 +115,13 @@ func _get_target_rotation() -> float:
 	elif velocity.y > 0.0:
 		return max_tilt
 	return 0.0
+
+
+func _is_sprite_visually_facing_left() -> bool:
+	if sprite_faces_left:
+		return not sprite.flip_h
+	else:
+		return sprite.flip_h
 
 
 func _update_ocean_state() -> void:

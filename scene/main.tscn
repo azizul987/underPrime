@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://dryv7pv71dd7d" path="res://skrip/camera_2d.gd" id="1_wp4xf"]
 [ext_resource type="Shader" uid="uid://c0khr8imndw0v" path="res://shader/laut.gdshader" id="2_brvut"]
 [ext_resource type="PackedScene" uid="uid://8dvq3764lcjx" path="res://scene/kapal_selam.tscn" id="2_v0l8b"]
+[ext_resource type="Texture2D" uid="uid://u8oy5o066rsm" path="res://sprite/awan.png" id="5_0ha60"]
+[ext_resource type="Script" uid="uid://7c5priluqek" path="res://scene/cloud.gd" id="5_4j5ol"]
+[ext_resource type="Texture2D" uid="uid://dyvgqfy0fxvsj" path="res://sprite/putih.png" id="5_p1hux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xm2m"]
 texture = ExtResource("1_itxqv")
@@ -105,8 +108,8 @@ position = Vector2(574.49994, 444.99997)
 scale = Vector2(35.906246, 27.8125)
 
 [node name="PointLight2D" type="PointLight2D" parent="cahaya" unique_id=1769237988]
-position = Vector2(0.306355, 75.66743)
-scale = Vector2(0.51044387, 2.8646066)
+position = Vector2(0.306355, 82.57079)
+scale = Vector2(0.51044387, 2.6488762)
 energy = 1.05
 texture = SubResource("GradientTexture2D_0ha60")
 
@@ -114,3 +117,38 @@ texture = SubResource("GradientTexture2D_0ha60")
 position = Vector2(-16.000002, -15.999999)
 scale = Vector2(0.02785031, 0.035955057)
 blend_mode = 1
+
+[node name="PointLight2D2" type="PointLight2D" parent="cahaya" unique_id=258644645]
+position = Vector2(0.09747782, -18.085392)
+scale = Vector2(1, 0.9898876)
+texture = ExtResource("5_p1hux")
+
+[node name="cloud" type="Node2D" parent="." unique_id=1168611269 node_paths=PackedStringArray("clouds", "left_marker", "right_marker")]
+position = Vector2(-113, 87)
+script = ExtResource("5_4j5ol")
+speed = 90.0
+clouds = [NodePath("Awan"), NodePath("Awan2"), NodePath("Awan3"), NodePath("Awan4")]
+left_marker = NodePath("kiri")
+right_marker = NodePath("kanan")
+
+[node name="Awan" type="Sprite2D" parent="cloud" unique_id=557497362]
+position = Vector2(193, 5)
+texture = ExtResource("5_0ha60")
+
+[node name="Awan2" type="Sprite2D" parent="cloud" unique_id=1115276327]
+position = Vector2(499, 0)
+texture = ExtResource("5_0ha60")
+
+[node name="Awan3" type="Sprite2D" parent="cloud" unique_id=947071441]
+position = Vector2(843, 0)
+texture = ExtResource("5_0ha60")
+
+[node name="Awan4" type="Sprite2D" parent="cloud" unique_id=1813047130]
+position = Vector2(1100, 0)
+texture = ExtResource("5_0ha60")
+
+[node name="kiri" type="Marker2D" parent="cloud" unique_id=837265353]
+position = Vector2(115, 0)
+
+[node name="kanan" type="Marker2D" parent="cloud" unique_id=1677174126]
+position = Vector2(1242, 0)

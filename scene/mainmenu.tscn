@@ -1,3 +1,50 @@
 [gd_scene format=3 uid="uid://c6hjoowmxooep"]
 
+[sub_resource type="Theme" id="Theme_rry36"]
+
 [node name="Mainmenu" type="Node2D" unique_id=815481815]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=94391656]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1158188000]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=1594978056]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -191.0
+offset_right = 311.40088
+offset_bottom = 190.729
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0074855, 0.89592355)
+theme_override_constants/separation = 27
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=466843219]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_rry36")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1006727384]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_rry36")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=267872325]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.21
+theme = SubResource("Theme_rry36")
+theme_override_constants/outline_size = 8
