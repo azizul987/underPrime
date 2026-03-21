@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c6hjoowmxooep"]
 
+[ext_resource type="FontFile" uid="uid://dnpjoxb2mgrc3" path="res://font/Minecraft.ttf" id="1_0khfh"]
+
 [sub_resource type="Theme" id="Theme_rry36"]
 
 [node name="Mainmenu" type="Node2D" unique_id=815481815]
@@ -35,16 +37,22 @@ theme_override_constants/separation = 27
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_rry36")
+theme_override_fonts/font = ExtResource("1_0khfh")
+theme_override_font_sizes/font_size = 48
+text = "Mulai"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1006727384]
+[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=487781186]
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_rry36")
+theme_override_fonts/font = ExtResource("1_0khfh")
+theme_override_font_sizes/font_size = 48
+text = "Pengaturan"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=267872325]
-clip_contents = true
+[node name="Button3" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1107757926]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.21
 theme = SubResource("Theme_rry36")
-theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_0khfh")
+theme_override_font_sizes/font_size = 48
+text = "keluar"
