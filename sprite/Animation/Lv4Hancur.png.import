@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2c8bqh2ebgls"
-path="res://.godot/imported/KapalSelam.png-db4f52e36a949d25a8530bc6b1491e77.ctex"
+uid="uid://dlghkcc368vx6"
+path="res://.godot/imported/Lv4Hancur.png-797c5276d8cca3540f256fa6a3c7d4c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/KapalSelam.png"
-dest_files=["res://.godot/imported/KapalSelam.png-db4f52e36a949d25a8530bc6b1491e77.ctex"]
+source_file="res://sprite/Animation/Lv4Hancur.png"
+dest_files=["res://.godot/imported/Lv4Hancur.png-797c5276d8cca3540f256fa6a3c7d4c1.ctex"]
 
 [params]
 

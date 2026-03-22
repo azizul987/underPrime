@@ -6,9 +6,11 @@ extends CharacterBody2D
 @export var gravity: float = 400.0
 
 @export var surface_level_y: float = 375.0
-@export var sea_floor_depth: float = 375.0
+@export var sea_floor_depth: float = 5056.0
 
-@export var sprite: Sprite2D
+@export var sprite: AnimatedSprite2D
+@export var pressure_label: RichTextLabel
+@export var depth_label: RichTextLabel
 
 # false = sprite asli menghadap kanan
 # true  = sprite asli menghadap kiri
@@ -44,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	_update_ocean_state()
+	_update_ui()
 
 	if _is_moving(input_dir):
 		_print_ocean_state_if_changed()
@@ -85,14 +88,8 @@ func _update_sprite_direction(input_dir: Vector2) -> void:
 	var moving_left := input_dir.x < 0.0
 
 	if sprite_faces_left:
-		# Sprite asli menghadap kiri
-		# Ke kiri  = tidak di-flip
-		# Ke kanan = di-flip
 		sprite.flip_h = not moving_left
 	else:
-		# Sprite asli menghadap kanan
-		# Ke kanan = tidak di-flip
-		# Ke kiri  = di-flip
 		sprite.flip_h = moving_left
 
 
@@ -129,6 +126,14 @@ func _update_ocean_state() -> void:
 	current_pressure = get_pressure()
 	current_pressure_normalized = get_pressure_normalized()
 	current_depth_percent = get_depth_percent()
+
+
+func _update_ui() -> void:
+	if pressure_label:
+		pressure_label.text = "[b]Pressure:[/b] " + str(snapped(current_pressure, 0.01)) + " Pa"
+
+	if depth_label:
+		depth_label.text = "[b]Depth:[/b] " + str(snapped(current_depth, 0.01)) + " m"
 
 
 func _print_ocean_state_if_changed() -> void:

@@ -1,22 +1,87 @@
 [gd_scene format=3 uid="uid://8dvq3764lcjx"]
 
 [ext_resource type="Script" uid="uid://go6qdiyfhtan" path="res://skrip/Gerakan_KapalSelam.gd" id="1_snucy"]
-[ext_resource type="Texture2D" uid="uid://d2c8bqh2ebgls" path="res://sprite/KapalSelam.png" id="2_mulr8"]
+[ext_resource type="Texture2D" uid="uid://b6des5bptfsxu" path="res://sprite/Animation/Lv1Swim.png" id="2_mulr8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acnns"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bq4nw"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py03y"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a60b"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nhay6"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8c76"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exxxk"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbcrk"]
+atlas = ExtResource("2_mulr8")
+region = Rect2(896, 0, 128, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yuabk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acnns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bq4nw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py03y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a60b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhay6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8c76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exxxk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbcrk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mulr8"]
-radius = 1.0909092
-height = 4.8
+radius = 0.68181825
+height = 2.6000004
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=183623793 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_snucy")
 sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1949191070]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("2_mulr8")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=535564224]
+sprite_frames = SubResource("SpriteFrames_yuabk")
+autoplay = "default"
+frame_progress = 0.84882027
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640968093]
-position = Vector2(0, 8)
+position = Vector2(4, 3)
 scale = Vector2(43.999996, 9.999999)
 shape = SubResource("CapsuleShape2D_mulr8")
