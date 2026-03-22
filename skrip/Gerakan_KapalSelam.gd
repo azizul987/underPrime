@@ -9,6 +9,8 @@ extends CharacterBody2D
 @export var sea_floor_depth: float = 5056.0
 
 @export var sprite: AnimatedSprite2D
+@export var player_light: PointLight2D
+
 @export var pressure_label: RichTextLabel
 @export var depth_label: RichTextLabel
 @export var stage_label: RichTextLabel
@@ -44,6 +46,17 @@ extends CharacterBody2D
 # Animation naming
 @export var idle_animation_suffix: String = "_idle"
 @export var explode_animation_suffix: String = "_ngeledak"
+
+# Light per tier
+@export var light_energy_level1: float = 0.8
+@export var light_energy_level2: float = 1.1
+@export var light_energy_level3: float = 1.5
+@export var light_energy_level4: float = 2.0
+
+@export var light_scale_level1: Vector2 = Vector2(1.0, 1.0)
+@export var light_scale_level2: Vector2 = Vector2(1.25, 1.25)
+@export var light_scale_level3: Vector2 = Vector2(1.55, 1.55)
+@export var light_scale_level4: Vector2 = Vector2(1.9, 1.9)
 
 # false = sprite asli menghadap kanan
 # true  = sprite asli menghadap kiri
@@ -99,6 +112,7 @@ func _ready() -> void:
 	_update_current_speed()
 	_update_warning_text()
 	_update_player_visual_animation()
+	_update_player_light()
 	_update_ui()
 
 
@@ -137,6 +151,7 @@ func _physics_process(delta: float) -> void:
 	_handle_upgrade_input()
 	_update_current_speed()
 	_update_player_visual_animation()
+	_update_player_light()
 	_update_warning_text()
 	_update_ui()
 	_handle_scan_input()
@@ -281,7 +296,10 @@ func _recalculate_oxygen_stats(fill_to_full: bool = false) -> void:
 	if fill_to_full:
 		current_oxygen = max_oxygen
 	else:
-		current_oxygen = clamp(current_oxygen, 0.0, max_oxygen)
+		if current_oxygen < 0.0:
+			current_oxygen = 0.0
+		elif current_oxygen > max_oxygen:
+			current_oxygen = max_oxygen
 
 
 func _get_current_danger_countdown_duration() -> float:
@@ -456,6 +474,7 @@ func upgrade_oxygen_tank() -> bool:
 	oxygen_tank_level += 1
 	_recalculate_oxygen_stats(false)
 	_update_player_visual_animation()
+	_update_player_light()
 	upgrade_info_text = "Oxygen Tank naik ke level " + str(oxygen_tank_level) + " (-" + str(cost) + " coin)"
 	return true
 
@@ -472,6 +491,7 @@ func upgrade_pressure_hull() -> bool:
 
 	pressure_hull_level += 1
 	_update_player_visual_animation()
+	_update_player_light()
 	upgrade_info_text = "Pressure Hull naik ke level " + str(pressure_hull_level) + " (-" + str(cost) + " coin)"
 	return true
 
@@ -489,6 +509,7 @@ func upgrade_propeller() -> bool:
 	propeller_level += 1
 	_update_current_speed()
 	_update_player_visual_animation()
+	_update_player_light()
 	upgrade_info_text = "Propeller naik ke level " + str(propeller_level) + " (-" + str(cost) + " coin)"
 	return true
 
@@ -592,7 +613,13 @@ func _win_game() -> void:
 
 func _get_visual_tier() -> int:
 	var shared_level: int = min(oxygen_tank_level, pressure_hull_level, propeller_level)
-	return clamp(shared_level + 1, 1, 4)
+
+	if shared_level < 0:
+		shared_level = 0
+	elif shared_level > 3:
+		shared_level = 3
+
+	return shared_level + 1
 
 
 func _get_idle_animation_name() -> String:
@@ -615,6 +642,25 @@ func _update_player_visual_animation() -> void:
 	if sprite.sprite_frames and sprite.sprite_frames.has_animation(idle_anim):
 		if sprite.animation != idle_anim:
 			sprite.play(idle_anim)
+
+
+func _update_player_light() -> void:
+	if player_light == null:
+		return
+
+	match _get_visual_tier():
+		1:
+			player_light.energy = light_energy_level1
+			player_light.scale = light_scale_level1
+		2:
+			player_light.energy = light_energy_level2
+			player_light.scale = light_scale_level2
+		3:
+			player_light.energy = light_energy_level3
+			player_light.scale = light_scale_level3
+		4:
+			player_light.energy = light_energy_level4
+			player_light.scale = light_scale_level4
 
 
 func _update_warning_text() -> void:
@@ -704,7 +750,7 @@ func _update_ui() -> void:
 		warning_label.text = "[b]Status:[/b] " + warning_text
 
 	if how_to_play_label:
-		how_to_play_label.text = "[b]Cara Main:[/b] Panah/WASD = Gerak | E = Scan | 1 = Upgrade Oxygen | 2 = Upgrade Pressure | 3 = Upgrade Propeller | Naik ke permukaan untuk isi ulang oxygen | Level Oxygen menambah waktu darurat | Cari pohon di dasar laut dan scan pohon itu untuk menang"
+		how_to_play_label.text = "[b]Cara Main:[/b] Panah/WASD = Gerak | E = Scan | 1 = Upgrade Oxygen | 2 = Upgrade Pressure | 3 = Upgrade Propeller | Naik ke permukaan untuk isi ulang oxygen | Level max memungkinkan kapal selam mencapai dasar laut sekitar " + str(snapped(sea_floor_depth, 0.01)) + " m | Cari pohon di dasar laut dan scan pohon itu untuk menang"
 
 
 func _handle_scan_input() -> void:
@@ -782,7 +828,7 @@ func _is_above_surface() -> bool:
 
 
 func get_depth() -> float:
-	return clamp(global_position.y - surface_level_y, 0.0, sea_floor_depth)
+	return global_position.y - surface_level_y
 
 
 func get_pressure() -> float:
@@ -800,17 +846,28 @@ func get_pressure_normalized() -> float:
 	if is_equal_approx(min_pressure, max_pressure):
 		return 0.0
 
-	return clamp(
-		(current_pressure - min_pressure) / (max_pressure - min_pressure),
-		0.0,
-		1.0
-	)
+	var normalized: float = (current_pressure - min_pressure) / (max_pressure - min_pressure)
+
+	if normalized < 0.0:
+		return 0.0
+	elif normalized > 1.0:
+		return 1.0
+
+	return normalized
 
 
 func get_depth_percent() -> float:
 	if sea_floor_depth <= 0.0:
 		return 0.0
-	return get_depth() / sea_floor_depth
+
+	var percent: float = get_depth() / sea_floor_depth
+
+	if percent < 0.0:
+		return 0.0
+	elif percent > 1.0:
+		return 1.0
+
+	return percent
 
 
 func get_stage_from_depth(depth: float) -> int:

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c6hjoowmxooep" path="res://scene/mainmenu.tscn" id="6_mswub"]
 [ext_resource type="FontFile" uid="uid://dnpjoxb2mgrc3" path="res://font/Minecraft.ttf" id="7_tqoya"]
 [ext_resource type="Texture2D" uid="uid://cfucd1kxi23wj" path="res://sprite/ikan_kecil5.png" id="8_of57s"]
+[ext_resource type="PackedScene" uid="uid://bg0ko6xpibc12" path="res://scene/menang.tscn" id="8_smf0o"]
 [ext_resource type="Script" uid="uid://60aoti7to1vx" path="res://scene/fish_spawner.gd" id="11_k65ib"]
 [ext_resource type="PackedScene" uid="uid://ce02oqmob6j1" path="res://ikan.tscn" id="12_wscrc"]
 [ext_resource type="Texture2D" uid="uid://goeopgcik4vn" path="res://sprite/naga_obat.png" id="15_v2gmf"]
@@ -99,9 +100,10 @@ tile_set = SubResource("TileSet_b5f6u")
 [node name="Node" type="Node" parent="layer" unique_id=2066379357]
 script = ExtResource("4_b5f6u")
 
-[node name="CharacterBody2D" parent="." unique_id=183623793 node_paths=PackedStringArray("pressure_label", "depth_label", "stage_label", "coin_label", "collection_label", "oxygen_label", "oxygen_upgrade_label", "pressure_upgrade_label", "propeller_upgrade_label", "upgrade_hint_label", "warning_label", "how_to_play_label") instance=ExtResource("2_v0l8b")]
+[node name="CharacterBody2D" parent="." unique_id=183623793 node_paths=PackedStringArray("player_light", "pressure_label", "depth_label", "stage_label", "coin_label", "collection_label", "oxygen_label", "oxygen_upgrade_label", "pressure_upgrade_label", "propeller_upgrade_label", "upgrade_hint_label", "warning_label", "how_to_play_label") instance=ExtResource("2_v0l8b")]
 position = Vector2(545, 341)
 surface_level_y = 380.0
+player_light = NodePath("PointLight2D")
 pressure_label = NodePath("../ui/Control/Tekanan")
 depth_label = NodePath("../ui/Control/deph")
 stage_label = NodePath("../ui/Control/step")
@@ -115,7 +117,7 @@ upgrade_hint_label = NodePath("../ui/Control/upgrade_hint_label")
 warning_label = NodePath("../ui/Control/warning_label")
 how_to_play_label = NodePath("../ui/Control/how_to_play_label")
 main_menu_scene = ExtResource("6_mswub")
-win_scene = ExtResource("6_mswub")
+win_scene = ExtResource("8_smf0o")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1232922700]
 script = ExtResource("1_wp4xf")
