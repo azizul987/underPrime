@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diunuodlrfbnn"
-path="res://.godot/imported/Kapal_selam.png-da370c0fae6a3d9ab472e0e0bcfc0d80.ctex"
+uid="uid://bdt8otf1vni2j"
+path="res://.godot/imported/ikan_kecil11.png-de7a45605f8f08040d7cb20f35945b0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Kapal_selam.png"
-dest_files=["res://.godot/imported/Kapal_selam.png-da370c0fae6a3d9ab472e0e0bcfc0d80.ctex"]
+source_file="res://sprite/ikan_kecil11.png"
+dest_files=["res://.godot/imported/ikan_kecil11.png-de7a45605f8f08040d7cb20f35945b0b.ctex"]
 
 [params]
 

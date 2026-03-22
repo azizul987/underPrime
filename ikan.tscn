@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ce02oqmob6j1"]
+
+[ext_resource type="Script" uid="uid://1m0bd8m4028r" path="res://ikan.gd" id="1_u16fc"]
+[ext_resource type="Texture2D" uid="uid://c6k5mxx6e0hit" path="res://sprite/ikan_kecil1.png" id="1_yhs2k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u16fc"]
+
+[node name="ikan" type="Area2D" unique_id=568635128]
+script = ExtResource("1_u16fc")
+fish_id = "fish_01"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=180170403]
+texture = ExtResource("1_yhs2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668588726]
+shape = SubResource("CircleShape2D_u16fc")
