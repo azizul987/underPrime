@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u16fc"]
 
-[node name="ikan" type="Area2D" unique_id=568635128]
+[node name="ikan" type="CharacterBody2D" unique_id=1234800727]
 script = ExtResource("1_u16fc")
 fish_id = "fish_01"
 
@@ -14,3 +14,11 @@ texture = ExtResource("1_yhs2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668588726]
 shape = SubResource("CircleShape2D_u16fc")
+
+[node name="RayCastRight" type="RayCast2D" parent="." unique_id=1514830009]
+position = Vector2(26, 0)
+target_position = Vector2(28, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="." unique_id=2129849598]
+position = Vector2(-26, 0)
+target_position = Vector2(-35, 0)

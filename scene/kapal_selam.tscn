@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8dvq3764lcjx"]
 
 [ext_resource type="Script" uid="uid://go6qdiyfhtan" path="res://skrip/Gerakan_KapalSelam.gd" id="1_snucy"]
+[ext_resource type="Texture2D" uid="uid://m6t5cbdbl07i" path="res://sprite/Animation/Lv1Hancur.png" id="2_acnns"]
 [ext_resource type="Texture2D" uid="uid://b6des5bptfsxu" path="res://sprite/Animation/Lv1Swim.png" id="2_mulr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acnns"]
@@ -35,6 +36,38 @@ region = Rect2(768, 0, 128, 64)
 atlas = ExtResource("2_mulr8")
 region = Rect2(896, 0, 128, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuabk"]
+atlas = ExtResource("2_acnns")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyccf"]
+atlas = ExtResource("2_acnns")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o21d"]
+atlas = ExtResource("2_acnns")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw7jr"]
+atlas = ExtResource("2_acnns")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an2u2"]
+atlas = ExtResource("2_acnns")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1vmt"]
+atlas = ExtResource("2_acnns")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqpso"]
+atlas = ExtResource("2_acnns")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ykvg"]
+atlas = ExtResource("2_acnns")
+region = Rect2(896, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yuabk"]
 animations = [{
 "frames": [{
@@ -65,6 +98,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuabk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyccf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o21d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw7jr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an2u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1vmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqpso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ykvg")
+}],
+"loop": false,
+"name": &"meledak",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mulr8"]
@@ -77,8 +139,8 @@ sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=535564224]
 sprite_frames = SubResource("SpriteFrames_yuabk")
+animation = &"meledak"
 autoplay = "default"
-frame_progress = 0.84882027
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=640968093]

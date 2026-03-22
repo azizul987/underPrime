@@ -81,9 +81,9 @@ func spawn_fish_for_stage(stage: int, amount: int) -> void:
 		var random_index: int = randi() % fish_list.size()
 		var fish_data: Dictionary = fish_list[random_index]
 
-		var fish_instance: Area2D = fish_scene.instantiate() as Area2D
+		var fish_instance: CharacterBody2D = fish_scene.instantiate() as CharacterBody2D
 		if fish_instance == null:
-			push_warning("fish_scene tidak menghasilkan Area2D")
+			push_warning("fish_scene tidak menghasilkan CharacterBody2D")
 			return
 
 		fish_instance.fish_id = fish_data["id"]

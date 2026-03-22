@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://u8oy5o066rsm" path="res://sprite/awan.png" id="5_0ha60"]
 [ext_resource type="Script" uid="uid://7c5priluqek" path="res://scene/cloud.gd" id="5_4j5ol"]
 [ext_resource type="Texture2D" uid="uid://dyvgqfy0fxvsj" path="res://sprite/putih.png" id="5_p1hux"]
+[ext_resource type="PackedScene" uid="uid://c6hjoowmxooep" path="res://scene/mainmenu.tscn" id="6_mswub"]
 [ext_resource type="FontFile" uid="uid://dnpjoxb2mgrc3" path="res://font/Minecraft.ttf" id="7_tqoya"]
 [ext_resource type="Texture2D" uid="uid://cfucd1kxi23wj" path="res://sprite/ikan_kecil5.png" id="8_of57s"]
 [ext_resource type="Script" uid="uid://60aoti7to1vx" path="res://scene/fish_spawner.gd" id="11_k65ib"]
@@ -88,12 +89,16 @@ tile_set = SubResource("TileSet_b5f6u")
 [node name="Node" type="Node" parent="layer" unique_id=2066379357]
 script = ExtResource("4_b5f6u")
 
-[node name="CharacterBody2D" parent="." unique_id=183623793 node_paths=PackedStringArray("pressure_label", "depth_label", "stage_label") instance=ExtResource("2_v0l8b")]
+[node name="CharacterBody2D" parent="." unique_id=183623793 node_paths=PackedStringArray("pressure_label", "depth_label", "stage_label", "coin_label", "collection_label", "oxygen_label") instance=ExtResource("2_v0l8b")]
 position = Vector2(545, 341)
 surface_level_y = 380.0
 pressure_label = NodePath("../ui/Control/Tekanan")
 depth_label = NodePath("../ui/Control/deph")
 stage_label = NodePath("../ui/Control/step")
+coin_label = NodePath("../ui/Control/coin")
+collection_label = NodePath("../ui/Control/colection")
+oxygen_label = NodePath("../ui/Control/oxygen")
+main_menu_scene = ExtResource("6_mswub")
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1232922700]
 script = ExtResource("1_wp4xf")
@@ -154,6 +159,33 @@ offset_left = 316.0
 offset_top = 160.0
 offset_right = 499.0
 offset_bottom = 218.0
+bbcode_enabled = true
+
+[node name="coin" type="RichTextLabel" parent="ui/Control" unique_id=1074644193]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 135.0
+offset_right = 826.0
+offset_bottom = 193.0
+bbcode_enabled = true
+
+[node name="colection" type="RichTextLabel" parent="ui/Control" unique_id=727805522]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 279.0
+offset_right = 423.0
+offset_bottom = 337.0
+bbcode_enabled = true
+text = "cOLLECTION"
+
+[node name="oxygen" type="RichTextLabel" parent="ui/Control" unique_id=1139495449]
+layout_mode = 0
+offset_left = 818.0
+offset_top = 333.0
+offset_right = 1001.0
+offset_bottom = 391.0
+bbcode_enabled = true
+text = "cOLLECTION"
 
 [node name="cahaya" type="Node2D" parent="." unique_id=276306848]
 position = Vector2(574.49994, 444.99997)
